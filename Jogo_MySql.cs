@@ -119,17 +119,24 @@ public class Jogo_MySql
             ConverterData(data_lancamento);
             using (var conexaoMySql = new MySqlConnection(conexao))
             {
-                conexaoMySql.Open();
-                string sql = "INSERT INTO Jogos (nome, franquia, genero, data_lancamento, nota) VALUES (@nome, @franquia, @genero, @data_lancamento, @nota)";
-                using (var comando = new MySqlCommand(sql, conexaoMySql))
+                try
                 {
-                    comando.Parameters.AddWithValue("@nome", nome);
-                    comando.Parameters.AddWithValue("@franquia", franquia);
-                    comando.Parameters.AddWithValue("@genero", genero);
-                    comando.Parameters.AddWithValue("@data_lancamento", DataLancamentoConvertida);
-                    comando.Parameters.AddWithValue("@nota", nota);
+                    conexaoMySql.Open();
+                    string sql = "INSERT INTO Jogos (nome, franquia, genero, data_lancamento, nota) VALUES (@nome, @franquia, @genero, @data_lancamento, @nota)";
+                    using (var comando = new MySqlCommand(sql, conexaoMySql))
+                    {
+                        comando.Parameters.AddWithValue("@nome", nome);
+                        comando.Parameters.AddWithValue("@franquia", franquia);
+                        comando.Parameters.AddWithValue("@genero", genero);
+                        comando.Parameters.AddWithValue("@data_lancamento", DataLancamentoConvertida);
+                        comando.Parameters.AddWithValue("@nota", nota);
 
-                    comando.ExecuteNonQuery();
+                        comando.ExecuteNonQuery();
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine($"Erro ao inserir o jogo {nome} no banco de dados.");
                 }
             }
         }
@@ -157,14 +164,52 @@ public class Jogo_MySql
             }
         }
     }
+
     public void AtualizarJogo(int id, int item_mudar, string novo_valor = null, double nova_nota = -1)
     {
         if (valido)
         {
             using (var conexaoMySql = new MySqlConnection(conexao))
             {
+                try
+                {
+                    conexaoMySql.Open();
+                    string sql = "UPDATE Jogos SET  WHERE id = @id";
+                    using (var comando = new MySqlCommand(sql, conexaoMySql))
+                    {
+                        comando.Parameters.AddWithValue("@id", id);
+
+                        int linhasAfetadas = comando.ExecuteNonQuery();
+                        if (linhasAfetadas > 0)
+                        {
+                            Console.WriteLine("Jogo atualizado com sucesso.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nenhum jogo encontrado com o ID fornecido.");
+                        }
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine($"Erro ao atualizar o jogo.");
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("Não foi possível atualizar o jogo no banco de dados devido a dados inválidos.");
+        }
+    }
+
+    public void DeletarJogo(int id)
+    {
+        using (var conexaoMySql = new MySqlConnection(conexao))
+        {
+            try
+            {
                 conexaoMySql.Open();
-                string sql = "UPDATE Jogos SET  WHERE id = @id";
+                string sql = "DELETE FROM Jogos WHERE id = @id";
                 using (var comando = new MySqlCommand(sql, conexaoMySql))
                 {
                     comando.Parameters.AddWithValue("@id", id);
@@ -172,7 +217,7 @@ public class Jogo_MySql
                     int linhasAfetadas = comando.ExecuteNonQuery();
                     if (linhasAfetadas > 0)
                     {
-                        Console.WriteLine("Jogo atualizado com sucesso.");
+                        Console.WriteLine("Jogo deletado com sucesso.");
                     }
                     else
                     {
@@ -180,10 +225,10 @@ public class Jogo_MySql
                     }
                 }
             }
-        }
-        else
-        {
-            Console.WriteLine("Não foi possível atualizar o jogo no banco de dados devido a dados inválidos.");
+            catch
+            {
+                Console.WriteLine($"Erro ao deletar o jogo.");
+            }
         }
     }
 }
