@@ -42,4 +42,5 @@ https://www.mysql.com/products/workbench/
 
 ```bash
 dotnet restore
+dotnet run
 
