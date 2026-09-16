@@ -28,13 +28,13 @@ https://dotnet.microsoft.com/en-us/download
 
 **4.** Clone ou baixe este repositório e abra a pasta do projeto no VS Code.
 
-**5.** Abra o MySQL Workbench e copie o código presente no arquivo **codigosql**, colando-o na área de consultas.
+**5.** Abra o MySQL Workbench e copie o código presente no arquivo **codigosql.sql**, colando-o na área de consultas.
 
 Caso ainda não tenha o MySQL Workbench instalado, faça o download em:
 
 https://www.mysql.com/products/workbench/
 
-**Importante:** defina a senha do usuário **root** como **Senac2026**. Caso utilize outra senha, altere a configuração de conexão com o banco de dados no projeto para corresponder à senha escolhida.
+**Importante:** defina a senha do usuário **root** como **Senac2026**. Caso utilize outra senha, altere a configuração de conexão com o banco de dados no arquivo **MySql.cs** na linha 4 para corresponder à senha escolhida.
 
 **6.** No MySQL Workbench, clique no botão de **Executar** (ícone de raio) para criar o banco de dados e as tabelas.
 
