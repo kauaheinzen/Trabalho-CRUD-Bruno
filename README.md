@@ -122,51 +122,59 @@ Após realizar todas essas etapas, o sistema estará pronto para ser utilizado.
 
 ---
 
-## 9. Pesquisa
+# <span style="color:#2563EB;">9. Pesquisa</span>
 
-### 9.1 Conexão
+## <span style="color:#2563EB;">9.1 Conexão</span>
 
-### Como C# realiza uma conexão com um banco de dados?
+### <span style="color:#475569;">Como C# realiza uma conexão com um banco de dados?</span>
 
 C# utiliza uma biblioteca ou driver para se comunicar com o banco de dados.
 
-### Qual biblioteca/driver é utilizado pelo banco escolhido?
+### <span style="color:#475569;">Qual biblioteca/driver é utilizado pelo banco escolhido?</span>
 
-No projeto, utilizamos o MySQL com a biblioteca **MySqlConnector**.
+No projeto, utilizamos o MySQL com a biblioteca <span style="color:#2563EB;"><strong>MySqlConnector</strong></span>.
 
-### Como essa biblioteca é adicionada ao projeto?
+### <span style="color:#475569;">Como essa biblioteca é adicionada ao projeto?</span>
 
-A biblioteca é adicionada pelo **NuGet (gerenciador de pacotes para projetos .NET)** através do comando:
+A biblioteca é adicionada pelo <span style="color:#2563EB;"><strong>NuGet (gerenciador de pacotes para projetos .NET)</strong></span> através do comando:
 
 ```bash
 dotnet add package MySqlConnector
 ```
 
-### O que é uma string de conexão?
+### <span style="color:#475569;">O que é uma string de conexão?</span>
 
 É uma sequência de informações que indica ao programa como acessar o banco de dados.
 
-### Quais informações aparecem em uma string de conexão?
+### <span style="color:#475569;">Quais informações aparecem em uma string de conexão?</span>
 
-Normalmente aparecem informações como **servidor, nome do banco de dados, usuário, senha e, em alguns casos, a porta**.
+Normalmente aparecem informações como <strong>servidor, nome do banco de dados, usuário, senha</strong> e, em alguns casos, a <strong>porta</strong>.
 
-## 9.2 Comandos SQL
+---
 
-* **INSERT:** adiciona dados ao banco.
-* **SELECT:** consulta dados.
-* **UPDATE:** altera dados existentes.
-* **DELETE:** exclui dados.
+## <span style="color:#2563EB;">9.2 Comandos SQL</span>
 
-## 9.3 Consulta de dados
+* <span style="color:#16A34A;"><strong>INSERT</strong></span>: adiciona dados ao banco.
+* <span style="color:#2563EB;"><strong>SELECT</strong></span>: consulta dados.
+* <span style="color:#F59E0B;"><strong>UPDATE</strong></span>: altera dados existentes.
+* <span style="color:#DC2626;"><strong>DELETE</strong></span>: exclui dados.
 
-O C# recebe os resultados de um comando `SELECT` através de um leitor, como o **MySqlDataReader**.
+---
+
+## <span style="color:#2563EB;">9.3 Consulta de dados</span>
+
+O C# recebe os resultados de um comando <span style="color:#2563EB;"><strong>SELECT</strong></span> através de um leitor, como o <span style="color:#2563EB;"><strong>MySqlDataReader</strong></span>.
 
 Os resultados podem ser percorridos linha por linha e utilizados para criar objetos de uma classe, permitindo que os dados do banco sejam utilizados dentro do sistema.
 
-## 9.4 Segurança
+---
 
-Os parâmetros SQL permitem enviar os valores separadamente do comando SQL. Eles ajudam a evitar **SQL Injection (injeção de SQL)**.
+## <span style="color:#2563EB;">9.4 Segurança</span>
 
-**SQL Injection (injeção de SQL)** é um tipo de ataque no qual uma pessoa insere comandos SQL maliciosos em campos de um sistema para tentar acessar, alterar ou excluir dados do banco.
+Os parâmetros SQL permitem enviar os valores separadamente do comando SQL. Eles ajudam a evitar <span style="color:#DC2626;"><strong>SQL Injection (injeção de SQL)</strong></span>.
 
-Quando o sistema coloca diretamente os textos digitados pelo usuário dentro de um comando SQL, ele pode ficar vulnerável a esse tipo de ataque. Por isso, é recomendado utilizar **comandos SQL parametrizados**.
+<span style="color:#DC2626;"><strong>SQL Injection (injeção de SQL)</strong></span> é um tipo de ataque no qual uma pessoa insere comandos SQL maliciosos em campos de um sistema para tentar acessar, alterar ou excluir dados do banco.
+
+Quando o sistema coloca diretamente os textos digitados pelo usuário dentro de um comando SQL, ele pode ficar vulnerável a esse tipo de ataque.
+
+Por isso, é recomendado utilizar <span style="color:#16A34A;"><strong>comandos SQL parametrizados</strong></span>.
