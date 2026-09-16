@@ -38,7 +38,7 @@ https://www.mysql.com/products/workbench/
 
 **6.** No MySQL Workbench, clique no botão de **Executar** (ícone de raio) para criar o banco de dados e as tabelas.
 
-**7.** No VS Code, abra o terminal integrado e execute o comando:
+**7.** Abra a pasta e execute o arquivo .exe **Trabalho-CRUD-Bruno** ou no VS Code, abra o terminal integrado e execute o comando:
 
 ```bash
 dotnet restore
