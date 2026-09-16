@@ -65,17 +65,25 @@ public class MySql
                 conexaoMySql.Open();
                 string sql = item_mudar switch
                 {
-                    1 => $"UPDATE jogo SET nome = {novo_valor} WHERE id = @id",
-                    2 => $"UPDATE jogo SET franquia = {novo_valor} WHERE id = @id",
-                    3 => $"UPDATE jogo SET genero_principal = {novo_valor} WHERE id = @id",
-                    4 => $"UPDATE jogo SET data_lancamento = {novo_valor} WHERE id = @id",
-                    5 => $"UPDATE jogo SET nota = {nova_nota} WHERE id = @id",
+                    1 => "UPDATE jogo SET nome = @novo_valor WHERE id = @id",
+                    2 => "UPDATE jogo SET franquia = @novo_valor WHERE id = @id",
+                    3 => "UPDATE jogo SET genero_principal = @novo_valor WHERE id = @id",
+                    4 => "UPDATE jogo SET data_lancamento = @novo_valor WHERE id = @id",
+                    5 => "UPDATE jogo SET nota = @nova_nota WHERE id = @id",
                     _ => "Item inválido para atualização."
                 };
 
                 using (var comando = new MySqlCommand(sql, conexaoMySql))
                 {
                     comando.Parameters.AddWithValue("@id", id);
+                    if (item_mudar == 5)
+                    {
+                        comando.Parameters.AddWithValue("@nova_nota", nova_nota);
+                    }
+                    else
+                    {
+                        comando.Parameters.AddWithValue("@novo_valor", novo_valor);
+                    }
 
                     int linhasAfetadas = comando.ExecuteNonQuery();
                     if (linhasAfetadas > 0)
@@ -88,9 +96,9 @@ public class MySql
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao atualizar o jogo.");
+                Console.WriteLine($"Erro ao atualizar o jogo: {ex.Message}");
             }
         }
     }
