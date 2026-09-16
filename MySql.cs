@@ -10,7 +10,7 @@ public class MySql
             try
             {
                 conexaoMySql.Open();
-                string sql = "INSERT INTO Jogos (nome, franquia, genero, data_lancamento, nota) VALUES (@nome, @franquia, @genero, @data_lancamento, @nota)";
+                string sql = "INSERT INTO jogo (nome, franquia, genero_principal, data_lancamento, nota) VALUES (@nome, @franquia, @genero, @data_lancamento, @nota)";
                 using (var comando = new MySqlCommand(sql, conexaoMySql))
                 {
                     comando.Parameters.AddWithValue("@nome", nome);
@@ -30,9 +30,9 @@ public class MySql
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao conectar ao banco de dados.");
+                Console.WriteLine($"Erro ao conectar ao banco de dados: {ex.Message}");
             }
         }
     }
@@ -42,14 +42,14 @@ public class MySql
         using (var conexaoMySql = new MySqlConnection(conexao))
         {
             conexaoMySql.Open();
-            string sql = "SELECT * FROM Jogos";
+            string sql = "SELECT * FROM jogo";
             using (var comando = new MySqlCommand(sql, conexaoMySql))
             {
                 using (var jogos = comando.ExecuteReader())
                 {
                     while (jogos.Read())
                     {
-                        Console.WriteLine($"ID: {jogos["id"]}, Nome: {jogos["nome"]}, Franquia: {jogos["franquia"]}, Gênero: {jogos["genero"]}, Data de Lançamento: {jogos["data_lancamento"]}, Nota: {jogos["nota"]}");
+                        Console.WriteLine($"ID: {jogos["id"]} | Nome: {jogos["nome"]} | Franquia: {jogos["franquia"]} | Gênero: {jogos["genero_principal"]} | Data de Lançamento: {jogos["data_lancamento"]} | Nota: {jogos["nota"]}");
                     }
                 }
             }
@@ -63,7 +63,16 @@ public class MySql
             try
             {
                 conexaoMySql.Open();
-                string sql = "UPDATE Jogos SET  WHERE id = @id";
+                string sql = item_mudar switch
+                {
+                    1 => $"UPDATE jogo SET nome = {novo_valor} WHERE id = @id",
+                    2 => $"UPDATE jogo SET franquia = {novo_valor} WHERE id = @id",
+                    3 => $"UPDATE jogo SET genero_principal = {novo_valor} WHERE id = @id",
+                    4 => $"UPDATE jogo SET data_lancamento = {novo_valor} WHERE id = @id",
+                    5 => $"UPDATE jogo SET nota = {nova_nota} WHERE id = @id",
+                    _ => "Item inválido para atualização."
+                };
+
                 using (var comando = new MySqlCommand(sql, conexaoMySql))
                 {
                     comando.Parameters.AddWithValue("@id", id);
@@ -93,7 +102,7 @@ public class MySql
             try
             {
                 conexaoMySql.Open();
-                string sql = "DELETE FROM Jogos WHERE id = @id";
+                string sql = "DELETE FROM jogo WHERE id = @id";
                 using (var comando = new MySqlCommand(sql, conexaoMySql))
                 {
                     comando.Parameters.AddWithValue("@id", id);
