@@ -1,48 +1,121 @@
 # Projeto CRUD em C#
 
-Trabalho escolar desenvolvido por 3 alunos do 1º ano do Ensino Médio Técnico do SENAC.
+Trabalho escolar desenvolvido por três alunos do 1º ano do Ensino Médio Técnico do SENAC.
 
 ## Autores
 
-- Filipe Rocha
-- Kauã Heinzen
-- Pedro Soares
+* Filipe Rocha
+* Kauã Heinzen
+* Pedro Soares
 
 ---
 
 # Manual de Instalação e Execução do Sistema Escolar
 
-Olá! Neste guia será mostrado como instalar e executar o sistema.
+Olá! Neste manual será apresentado o passo a passo para instalar, configurar e executar o sistema.
 
-## Passo a passo
+## 1. Instalação do Visual Studio Code
 
-**1.** Instale o Visual Studio Code (VS Code), caso ainda não tenha:
+Caso ainda não possua o Visual Studio Code instalado, faça o download pelo site oficial:
 
 https://code.visualstudio.com/
 
-**2.** Instale o .NET:
+Após a instalação, abra o programa.
+
+## 2. Instalação do .NET
+
+Instale o .NET pelo site oficial:
 
 https://dotnet.microsoft.com/en-us/download
 
-**3.** Abra o VS Code, vá até a aba **Extensões** e instale a extensão **C# Dev Kit**.
+Recomenda-se instalar o **SDK do .NET**, pois ele é necessário para executar comandos como `dotnet restore` e `dotnet run`.
 
-**4.** Clone ou baixe este repositório e abra a pasta do projeto no VS Code.
+## 3. Instalação da extensão C# Dev Kit
 
-**5.** Abra o MySQL Workbench e copie o código presente no arquivo **codigosql.sql**, colando-o na área de consultas.
+No Visual Studio Code:
 
-Caso ainda não tenha o MySQL Workbench instalado, faça o download em:
+1. Abra a aba **Extensões**.
+2. Pesquise por **C# Dev Kit**.
+3. Instale a extensão.
+
+Ela fornece suporte ao desenvolvimento de aplicações C# no VS Code.
+
+## 4. Abrir o projeto
+
+Clone ou baixe este repositório e abra a **pasta do projeto** no Visual Studio Code.
+
+Certifique-se de que os arquivos do projeto, incluindo o arquivo `.csproj`, estejam dentro da pasta aberta.
+
+## 5. Instalação e configuração do MySQL Workbench
+
+Abra o MySQL Workbench e copie o código presente no arquivo **codigosql.sql**.
+
+Cole o código na área de consultas do MySQL Workbench.
+
+Caso ainda não tenha o MySQL Workbench instalado, faça o download pelo site oficial:
 
 https://www.mysql.com/products/workbench/
 
-**Importante:** defina a senha do usuário **root** como **Senac2026**. Caso utilize outra senha, altere a configuração de conexão com o banco de dados no arquivo **MySql.cs** na linha 4 para corresponder à senha escolhida.
+### Configuração da senha
 
-**6.** No MySQL Workbench, clique no botão de **Executar** (ícone de raio) para criar o banco de dados e as tabelas.
+Para que o sistema consiga se conectar ao banco de dados, a senha do usuário **root** deve ser:
 
-**7.** Abra a pasta e execute o arquivo .exe **Trabalho-CRUD-Bruno** (Lembrando que a senha do mysql tem que ser "Senac2026" 
-ou 
-No VS Code, abra o terminal integrado e execute o comando:
+**Senac2026**
+
+Caso seja utilizada outra senha, será necessário alterar a senha configurada no arquivo **MySql.cs**, na linha 4, para a senha escolhida.
+
+## 6. Criação do banco de dados
+
+Depois de colar o código do arquivo **codigosql.sql** no MySQL Workbench:
+
+1. Verifique se o código foi inserido corretamente.
+2. Clique no botão **Executar**, representado pelo ícone de raio.
+3. Aguarde a execução do script.
+
+O código será responsável pela criação do banco de dados e das tabelas necessárias para o funcionamento do sistema.
+
+## 7. Executando o sistema
+
+Existem duas formas de executar o sistema.
+
+### Opção 1 — Executar o arquivo `.exe`
+
+Abra a pasta do projeto e execute o arquivo:
+
+**Trabalho-CRUD-Bruno.exe**
+
+> Caso o nome do arquivo `.exe` tenha sido alterado, execute o arquivo executável correspondente ao projeto.
+
+Certifique-se de que a senha configurada no sistema seja a mesma senha utilizada no MySQL.
+
+### Opção 2 — Executar pelo Visual Studio Code
+
+No Visual Studio Code, abra o **Terminal Integrado** e certifique-se de que o terminal esteja localizado na pasta do projeto.
+
+Execute primeiro:
 
 ```bash
 dotnet restore
-dotnet run
+```
 
+Depois, execute:
+
+```bash
+dotnet run
+```
+
+O sistema será compilado e iniciado automaticamente.
+
+## 8. Requisitos
+
+Para executar o sistema corretamente, é necessário possuir:
+
+* Visual Studio Code;
+* .NET SDK;
+* Extensão C# Dev Kit;
+* MySQL Server;
+* MySQL Workbench;
+* Banco de dados configurado através do arquivo **codigosql.sql**;
+* Senha do usuário `root` configurada corretamente.
+
+Após realizar todas essas etapas, o sistema estará pronto para ser utilizado.
