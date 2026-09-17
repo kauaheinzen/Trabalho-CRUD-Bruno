@@ -56,7 +56,6 @@ while (true)
                 string resposta = Console.ReadLine().ToUpper();
                 if (resposta != "S" && resposta != "SIM")
                 {
-                    Console.WriteLine(resposta);
                     break;
                 }
             }
