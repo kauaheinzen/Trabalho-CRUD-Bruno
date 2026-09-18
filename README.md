@@ -74,19 +74,33 @@ Depois de colar o código do arquivo **codigosql.sql** no MySQL Workbench:
 
 O código será responsável pela criação do banco de dados e das tabelas necessárias para o funcionamento do sistema.
 
-## 7. Executando o sistema
+## 7. Requisitos
+
+Para executar o sistema corretamente, é necessário possuir:
+
+* Visual Studio Code;
+* .NET SDK;
+* Extensão C# Dev Kit;
+* MySQL Server;
+* MySQL Workbench;
+* Banco de dados configurado através do arquivo **codigosql.sql**;
+* Senha do usuário `root` configurada corretamente.
+
+Após realizar todas essas etapas, o sistema estará pronto para ser utilizado.
+
+## 8. Executando o sistema
 
 Existem duas formas de executar o sistema.
 
 ### Opção 1 — Executar o arquivo `.exe`
 
-Abra a pasta do projeto e execute o arquivo:
+Abra a pasta **bin** do projeto e execute o arquivo:
 
 **Trabalho-CRUD-Bruno.exe**
 
 > Caso o nome do arquivo `.exe` tenha sido alterado, execute o arquivo executável correspondente ao projeto.
 
-Certifique-se de que a senha configurada no sistema seja a mesma senha utilizada no MySQL.
+Certifique-se de que a senha configurada no MySQL seja a mesma senha pré-definida no sistema.
 
 ### Opção 2 — Executar pelo Visual Studio Code
 
@@ -105,17 +119,3 @@ dotnet run
 ```
 
 O sistema será compilado e iniciado automaticamente.
-
-## 8. Requisitos
-
-Para executar o sistema corretamente, é necessário possuir:
-
-* Visual Studio Code;
-* .NET SDK;
-* Extensão C# Dev Kit;
-* MySQL Server;
-* MySQL Workbench;
-* Banco de dados configurado através do arquivo **codigosql.sql**;
-* Senha do usuário `root` configurada corretamente.
-
-Após realizar todas essas etapas, o sistema estará pronto para ser utilizado.
