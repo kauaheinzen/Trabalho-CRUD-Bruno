@@ -1,7 +1,4 @@
-﻿using System.Formats.Tar;
-using System.Runtime.InteropServices;
-
-MySql jogos = new MySql();
+﻿MySql jogos = new MySql();
 bool sair = false;
 
 Console.Clear();
