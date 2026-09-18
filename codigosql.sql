@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS jogos;
+USE jogos;
+
+CREATE TABLE IF NOT EXISTS jogo(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    franquia VARCHAR(100) NULL,
+    genero_principal VARCHAR(100) NOT NULL,
+    data_lancamento DATE NOT NULL,
+    nota INT NOT NULL
+)
