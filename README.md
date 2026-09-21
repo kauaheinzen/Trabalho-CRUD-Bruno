@@ -118,4 +118,5 @@ Depois, execute:
 dotnet run
 ```
 
-O sistema será compilado e iniciado automaticamente.
+## 9. Perguntas
+As perguntas foram respondidas no arquivo **pesquisa.txt**
