@@ -45,7 +45,7 @@ Sistema de jogos executado pelo terminal, com CRUD completo (cadastrar, listar, 
 | `franquia` | Franquia do jogo |
 | `genero_principal` | Gênero principal |
 | `data_lancamento` | Data de lançamento |
-| `nota` | Nota do jogo (0 a 99) |
+| `nota` | Nota do jogo |
 
 ### Arquivos do projeto
 
