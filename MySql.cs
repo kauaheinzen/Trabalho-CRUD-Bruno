@@ -1,3 +1,4 @@
+using System.Data.Common;
 using MySqlConnector;
 public class MySql
 {
@@ -37,7 +38,7 @@ public class MySql
         }
     }
 
-    public void LerJogos()
+    public List<Jogo_MySql> LerJogos()
     {
         using (var conexaoMySql = new MySqlConnection(conexao))
         {
@@ -45,15 +46,56 @@ public class MySql
             string sql = "SELECT * FROM jogo";
             using (var comando = new MySqlCommand(sql, conexaoMySql))
             {
+                var jogosList = new List<Jogo_MySql>();
                 using (var jogos = comando.ExecuteReader())
                 {
                     while (jogos.Read())
                     {
-                        Console.WriteLine($"ID: {jogos["id"]} | Nome: {jogos["nome"]} | Franquia: {jogos["franquia"]} | Gênero: {jogos["genero_principal"]} | Data de Lançamento: {jogos["data_lancamento"]} | Nota: {jogos["nota"]}");
+                        // Cria o objeto sem chamar o construtor que grava no banco
+                        var jogo = new Jogo_MySql();
+
+                        jogo.Id = jogos["id"].ToString();
+
+                        jogo.Nome = jogos["nome"].ToString();
+                        jogo.Franquia = jogos["franquia"].ToString();
+                        jogo.Genero = jogos["genero_principal"].ToString();
+                        jogo.DataLancamento = Convert.ToDateTime(jogos["data_lancamento"]).ToString("dd/MM/yyyy");
+                        jogo.Nota = double.Parse(jogos["nota"].ToString());
+
+                        jogosList.Add(jogo);
+                    }
+                }
+                return jogosList;
+            }
+        }
+    }
+
+    public Jogo_MySql BuscarJogo(string nome)
+    {
+        using (var conexaoMySql = new MySqlConnection(conexao))
+        {
+            conexaoMySql.Open();
+            string sql = "SELECT * FROM jogo WHERE nome LIKE @nome";
+            using (var comando = new MySqlCommand(sql, conexaoMySql))
+            {
+                comando.Parameters.AddWithValue("@nome", $"%{nome}%");
+                using (var jogo = comando.ExecuteReader())
+                {
+                    if (jogo.Read())
+                    {
+                        var jogoEncontrado = new Jogo_MySql();
+                        jogoEncontrado.Id = jogo["id"].ToString();
+                        jogoEncontrado.Nome = jogo["nome"].ToString();
+                        jogoEncontrado.Franquia = jogo["franquia"].ToString();
+                        jogoEncontrado.Genero = jogo["genero_principal"].ToString();
+                        jogoEncontrado.DataLancamento = Convert.ToDateTime(jogo["data_lancamento"]).ToString("dd/MM/yyyy");
+                        jogoEncontrado.Nota = double.Parse(jogo["nota"].ToString());
+                        return jogoEncontrado;
                     }
                 }
             }
         }
+        return null;
     }
 
     public void AtualizarJogo(int id, int item_mudar, string novo_valor = null, double nova_nota = -1)

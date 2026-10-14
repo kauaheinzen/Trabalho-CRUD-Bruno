@@ -17,9 +17,10 @@ while (true)
     Console.WriteLine("================================");
     Console.WriteLine("1. Cadastrar Jogo ");
     Console.WriteLine("2.  Listar Jogos  ");
-    Console.WriteLine("3. Atualizar Jogo ");
-    Console.WriteLine("4.  Deletar Jogo  ");
-    Console.WriteLine("5.      Sair      ");
+    Console.WriteLine("3.  Buscar Jogo   ");
+    Console.WriteLine("4. Atualizar Jogo ");
+    Console.WriteLine("5.  Deletar Jogo  ");
+    Console.WriteLine("6.      Sair      ");
     Console.Write("Escolha uma opção: ");
 
     string opcao = Console.ReadLine();
@@ -59,10 +60,35 @@ while (true)
             break;
 
         case "2":
-            jogos.LerJogos();
+            var jogos_lidos = jogos.LerJogos();
+            if (jogos_lidos.Count == 0)
+            {
+                Console.WriteLine("Nenhum jogo encontrado.");
+            }
+            else
+            {
+                foreach (var jogo in jogos_lidos)
+                {
+                    Console.WriteLine($"ID: {jogo.Id}, Nome: {jogo.Nome}, Franquia: {jogo.Franquia}, Gênero: {jogo.Genero}, Data de Lançamento: {jogo.DataLancamento}, Nota: {jogo.Nota}");
+                }
+            }
+            break;
+        
+        case "3":
+            Console.Write("Digite o nome do jogo que deseja buscar: ");
+            string nomeBuscar = Console.ReadLine();
+            var jogoEncontrado = jogos.BuscarJogo(nomeBuscar);
+            if (jogoEncontrado != null)
+            {
+                Console.WriteLine($"ID: {jogoEncontrado.Id}, Nome: {jogoEncontrado.Nome}, Franquia: {jogoEncontrado.Franquia}, Gênero: {jogoEncontrado.Genero}, Data de Lançamento: {jogoEncontrado.DataLancamento}, Nota: {jogoEncontrado.Nota}");
+            }
+            else
+            {
+                Console.WriteLine("Jogo não encontrado.");
+            }
             break;
 
-        case "3":
+        case "4":
             while (true)
             {
                 try
@@ -134,7 +160,7 @@ while (true)
 
             
 
-        case "4":
+        case "5":
             try
             {
                 Console.Write("Digite o ID do jogo que deseja deletar: ");
@@ -148,7 +174,7 @@ while (true)
 
             break;
 
-        case "5":
+        case "6":
             sair = true;
             break;
 

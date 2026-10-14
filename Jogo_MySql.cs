@@ -2,6 +2,7 @@ public class Jogo_MySql
 { 
     private bool valido = true;
 
+    private string id;
     private string nome;
     private string franquia;
     private string genero;
@@ -10,6 +11,11 @@ public class Jogo_MySql
 
     private DateTime DataLancamentoConvertida;
 
+    public string Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
     public string Nome
     {
         get { return nome; }
@@ -121,5 +127,8 @@ public class Jogo_MySql
         {
             Console.WriteLine("Não foi possível inserir o jogo no banco de dados devido a dados inválidos.");
         }
+    }
+    public Jogo_MySql()
+    { 
     }
 }
